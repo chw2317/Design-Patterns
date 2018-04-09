@@ -1,1 +1,23 @@
 ====================	建造者模式	====================
+
+1.应用场景：
+	将一个复杂的对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。
+	
+	
+2.组成部分（四个角色）：
+	Product 要创建的复杂对象。
+	Builder 一个抽象接口，以规范产品对象的各个组成成分的建造。这个接口规定要实现复杂对象的哪些部分的创建，并不涉及具体的对象部件的创建，一般由子类实现具体过程。
+	ConcreteBuilder 实现Builder接口，具体化复杂对象的各部分的创建。在建造过程完成后，返回组建好的对象。
+	Director 调用具体建造者来创建复杂对象的各个部分（现实开发中，一般被省略，直接使用一个Builder来进行对象的组装）
+	
+	
+3.优缺点：
+	优点：简化复杂对象构建，对象本身与创建过程解耦，无需知道具体的内部实现细节，相同的创建过程可以创建不同的产品对象。
+	缺点：可能会产生多余的建造者和构建过程对象，消耗内存；
+		不适用于内部建造顺序不稳定，变化复杂的对象，可能导致需要创建很多具体建造者来实现这些变化。
+		
+		
+4.Android中的建造者模式：
+	OkHttp：Request builder = new Request.Builder().url("http://www.baidu.com").build();
+	EventBus：EventBus.builder().addIndex(new MyEventBusIndex()).installDefaultEventBus();
+	AlertDialog,GsonBuilder等等。
